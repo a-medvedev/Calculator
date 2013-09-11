@@ -5,7 +5,11 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class Pop implements Command{
-    public void execute(Stack<Double> stack, HashMap<String, Double> vars, String[] params){
+    @Resource(type = "vars")
+    HashMap vars;
+    @Resource(type = "stack")
+    Stack<Double> stack;
+    public void execute(String[] params){
         vars.put(params[1], stack.pop());
     }
 }

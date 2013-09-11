@@ -4,6 +4,9 @@ import com.suhorukov.commands.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Stack;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -13,15 +16,33 @@ public class Calculator {
 
     public static void main(String[] args){
         HashMap<String, Command> cmds = new HashMap<String, Command>();
-        cmds.put("ADD", new Add());
-        cmds.put("DEF", new Define());
-        cmds.put("DIV", new Div());
-        cmds.put("MUL", new Mul());
-        cmds.put("POP", new Pop());
-        cmds.put("PRN", new Print());
-        cmds.put("PSH", new Push());
-        cmds.put("SQR", new Sqrt());
-        cmds.put("SUB", new Sub());
+//        cmds.put("ADD", new Add());
+//        cmds.put("DEF", new Define());
+//        cmds.put("DIV", new Div());
+//        cmds.put("MUL", new Mul());
+//        cmds.put("POP", new Pop());
+//        cmds.put("PRN", new Print());
+//        cmds.put("PSH", new Push());
+//        cmds.put("SQR", new Sqrt());
+//        cmds.put("SUB", new Sub());
+
+        FileReader fReader = null;
+        try {
+            fReader = new FileReader("./src/com/suhorukov/calculator/comm.prop");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            System.exit(1);
+        }
+
+        Properties prop = new Properties();
+        try {
+            prop.load(fReader);
+        } catch (IOException e) {
+            System.out.println("Cannot load property file.");
+            System.exit(2);
+        }
+
+
 
         boolean isInteractive = false;//флаг для интерактивной подсказки
         if (args.length > 0){
@@ -54,7 +75,7 @@ public class Calculator {
                 continue;
             }
             try {
-                cmds.get(splitCmd[0].toUpperCase()).execute(stack, vars, splitCmd);
+                cmds.get(splitCmd[0].toUpperCase()).execute(splitCmd);
             } catch (NullPointerException e){
                 System.out.println("Программа завершена");
                 System.exit(0);

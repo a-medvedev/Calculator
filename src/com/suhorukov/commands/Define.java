@@ -1,11 +1,18 @@
 package com.suhorukov.commands;
 
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Stack;
 
 public class Define implements Command{
-    public void execute(Stack<Double> stack, HashMap<String, Double> vars, String[] params){
+
+    @Resource(type = "vars")
+    HashMap<String, Double> vars;
+
+    public void execute(String[] params){
+
         vars.put(params[1], Double.valueOf(params[2]));
     }
 }

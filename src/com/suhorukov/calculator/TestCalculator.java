@@ -55,7 +55,7 @@ public class TestCalculator {
         while (codewalker.hasNext()){
             String cmd = codewalker.nextLine();
             String[] splitCmd = cmd.split(" ");
-            cmds.get(splitCmd[0].toUpperCase()).execute(stack, vars, splitCmd);
+            cmds.get(splitCmd[0].toUpperCase()).execute(splitCmd);
         }
 
         assert (stack.peek() == -0.5);
@@ -101,7 +101,7 @@ public class TestCalculator {
         while (codewalker.hasNext()){
             String cmd = codewalker.nextLine();
             String[] splitCmd = cmd.split(" ");
-            cmds.get(splitCmd[0].toUpperCase()).execute(stack, vars, splitCmd);
+            cmds.get(splitCmd[0].toUpperCase()).execute(splitCmd);
         }
 
         assert (stack.peek() == -1.0);
