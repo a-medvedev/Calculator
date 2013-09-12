@@ -9,7 +9,7 @@ import java.util.Stack;
 public class Define implements Command{
 
     @Resource(type = "vars")
-    HashMap<String, Double> vars;
+    public HashMap<String, Double> vars;
 
     public void execute(String[] params){
 

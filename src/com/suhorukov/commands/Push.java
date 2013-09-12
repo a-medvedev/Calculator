@@ -6,10 +6,10 @@ import java.util.Stack;
 
 public class Push implements Command{
     @Resource(type = "stack")
-    Stack<Double> stack;
+    public Stack<Double> stack;
 
     @Resource(type = "vars")
-    HashMap<String, Double> vars;
+    public HashMap<String, Double> vars;
 
     public void execute(String[] params){
         if (vars.containsKey(params[1])){
